@@ -1,0 +1,473 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <!-- Favicon -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <link rel="icon" href="https://i.ibb.co/HDC6xy3/New-Project-3.png" type="image/png" sizes="48x48">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Transaction!</title>
+  <style>
+    body {
+      font-family: 'Arial', sans-serif;
+      margin: 0;
+      padding: 0;
+      background: linear-gradient(135deg, #000000, #003366); /* Black and blue gradient background */
+      color: #f0f0f0;
+      position: relative;
+    }
+
+    .container {
+      max-width: 900px;
+      margin: 50px auto;
+      padding: 100px 20px 20px; /* Increased top padding */
+      text-align: center;
+      background-color: rgba(0, 0, 0, 0.7);
+      border-radius: 10px;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+      border: 1px solid rgba(0, 204, 255, 0.3);
+      position: relative;
+    }
+
+    .logo {
+      position: absolute;
+      top: 20px; /* Adjust as needed */
+      left: 20px; /* Adjust as needed */
+      width: 120px;
+      height: auto;
+      z-index: 10000;
+    }
+
+    .currency-select {
+      position: absolute;
+      top: 20px;
+      right: 20px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .currency-select button {
+      border: none;
+      border-radius: 5px;
+      color: white;
+      padding: 8px 12px;
+      cursor: pointer;
+      font-size: 14px;
+      transition: background 0.3s ease;
+    }
+
+    .currency-select button.inr {
+      background: linear-gradient(180deg, #FF9933 33%, #FFFFFF 33%, #FFFFFF 66%, #138808 66%);
+      border: none;
+      border-radius: 5px;
+      color: #000080; /* Navy blue color */
+      padding: 10px 20px;
+      cursor: pointer;
+      font-size: 12px;
+      transition: transform 0.3s ease; /* Smooth transition */
+    }
+
+    .currency-select button.inr:hover {
+      transform: scale(1.1); /* Increases the size by 20% on hover */
+    }
+
+    .currency-select button.pkr {
+      background: linear-gradient(90deg, #FFFFFF 30%, #008000 30%);
+      border: none;
+      border-radius: 5px;
+      color: white;
+      padding: 10px 20px;
+      cursor: pointer;
+      font-size: 12px;
+      transition: transform 0.3s ease; /* Smooth transition */
+    }
+
+    .currency-select button.pkr:hover {
+      transform: scale(1.1); /* Increases the size by 20% on hover */
+    }
+
+    .currency-select span {
+      color: white;
+      font-size: 14px;
+    }
+
+    h1, h2, h4, p {
+      margin-bottom: 20px;
+    }
+
+    button {
+      background: linear-gradient(45deg, #003366, #00d4ff); /* Blue gradient for buttons */
+      border: none;
+      border-radius: 5px;
+      color: white;
+      padding: 12px 20px;
+      cursor: pointer;
+      transition: background 0.3s ease;
+      font-size: 16px;
+    }
+
+    button:hover {
+      background: linear-gradient(45deg, #00d4ff, #003366); /* Inverted gradient on hover */
+    }
+
+    @keyframes confetti {
+      0% {
+        transform: translateY(-100vh) rotate(0deg);
+        opacity: 1;
+      }
+      100% {
+        transform: translateY(100vh) rotate(360deg);
+        opacity: 0;
+      }
+    }
+
+    .confetti {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      pointer-events: none;
+      overflow: hidden;
+      z-index: 9999;
+    }
+
+    .confetti div {
+      position: absolute;
+      width: 10px;
+      height: 10px;
+      background-color: rgba(255, 255, 255, 0.8); /* White confetti for contrast */
+      opacity: 0;
+      animation: confetti 5s linear infinite;
+      border-radius: 50%;
+    }
+
+    .confetti div:nth-child(1) {
+      background-color: rgba(255, 0, 0, 0.8);
+      animation-duration: 5s;
+      animation-delay: 0s;
+    }
+
+    .confetti div:nth-child(2) {
+      background-color: rgba(0, 255, 0, 0.8);
+      animation-duration: 6s;
+      animation-delay: 1s;
+    }
+
+    .confetti div:nth-child(3) {
+      background-color: rgba(0, 0, 255, 0.8);
+      animation-duration: 4s;
+      animation-delay: 2s;
+    }
+
+    .confetti div:nth-child(4) {
+      background-color: rgba(255, 255, 0, 0.8);
+      animation-duration: 7s;
+      animation-delay: 3s;
+    }
+
+    .confetti div:nth-child(5) {
+      background-color: rgba(255, 165, 0, 0.8);
+      animation-duration: 5s;
+      animation-delay: 4s;
+    }
+
+    input[type="text"] {
+      width: 80%;
+      padding: 12px;
+      margin-bottom: 12px;
+      border-radius: 5px;
+      border: 1px solid #cccccc;
+      background: rgba(255, 255, 255, 0.1);
+      color: #ffffff;
+    }
+
+    .popup {
+      display: none;
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 80%;
+      max-width: 500px;
+      background: rgba(0, 0, 0, 0.897);
+      border-radius: 10px;
+      padding: 20px;
+      text-align: center;
+      z-index: 10000;
+    }
+
+    .popup h2 {
+      margin: 0;
+      color: #00d4ff;
+    }
+
+    .popup p {
+      margin: 20px 0;
+      color: #f0f0f0;
+    }
+
+    .popup #discountedPrice {
+      color: green; /* Green color for discounted prices */
+    }
+
+    .popup button {
+      background: linear-gradient(to bottom, #4756df, #4756df);
+      border: none;
+      border-radius: 5px;
+      color: white;
+      padding: 10px 20px;
+      cursor: pointer;
+      font-size: 16px;
+    }
+
+    .popup .close {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      background: #00000000;
+      border: none;
+      border-radius: 5px;
+      color: rgba(0, 0, 0, 0);
+      width: 5px;
+      height: 5px;
+      cursor: pointer;
+      font-size: 20px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .checkout-button-container {
+      text-align: center;
+      margin-top: 30px;
+    }
+
+    /* Added keyframes for bounce and pulse animations */
+    @keyframes bounce {
+      0%, 20%, 50%, 80%, 100% {
+        transform: translateY(0);
+      }
+      40% {
+        transform: translateY(-10px);
+      }
+      60% {
+        transform: translateY(-5px);
+      }
+    }
+
+    @keyframes pulse {
+      0% {
+        transform: scale(1);
+      }
+      50% {
+        transform: scale(1.1);
+      }
+      100% {
+        transform: scale(1);
+      }
+    }
+
+    .checkout-button {
+  background: linear-gradient(45deg, #006400, #00ff00);
+  border: none;
+  border-radius: 5px;
+  color: white;
+  padding: 12px 20px;
+  cursor: pointer;
+  transition: background 0.3s ease;
+  font-size: 16px;
+  font-family: 'Arial', sans-serif;
+  font-weight: bold;
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+}
+
+.checkout-button::before {
+  content: "\f07a"; /* Font Awesome cart icon */
+  font-family: "Font Awesome 6 Free"; /* Adjust based on your Font Awesome version */
+  font-weight: 900; /* Required for solid icons */
+  margin-right: 8px; /* Space between icon and text */
+  font-size: 18px; /* Adjust size as needed */
+}
+
+
+
+
+
+
+
+
+    .checkout-button:hover {
+      animation: bounce 1s;
+      background: linear-gradient(45deg, #004d00, #00cc00);
+    }
+
+    .checkout-button:active {
+      animation: pulse 0.3s;
+    }
+
+    /* Error pop-up styles */
+    #errorPopup {
+      background: rgba(0, 0, 0, 0.9); /* Red background for error pop-up */
+      color: white;
+    }
+
+    #errorPopup h2 {
+      color: #ff0000; /* Red color for error message */
+    }
+
+    #errorPopup #errorMessage {
+      color: #f0f0f0;
+    }
+
+    /* Party popper effect styles */
+    .party-popper {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      pointer-events: none;
+      overflow: hidden;
+      z-index: 10000;
+      display: none;
+    }
+
+    .party-popper div {
+      position: absolute;
+      width: 15px;
+      height: 15px;
+      background-color: rgba(255, 255, 255, 0.9); /* White color for party effect */
+      border-radius: 50%;
+      animation: popper 3s ease-in-out infinite;
+    }
+
+    @keyframes popper {
+      0% {
+        transform: translateY(0) scale(1);
+        opacity: 1;
+      }
+      100% {
+        transform: translateY(100vh) scale(0.5);
+        opacity: 0;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <img src="https://i.ibb.co/ZfmZKJh/New-Project-3.png" alt="Logo" class="logo">
+    <div class="currency-select">
+      <span>Select Currency:</span>
+      <button class="inr" onclick="selectCurrency('INR')">INR</button>
+      <span>or</span>
+      <button class="pkr" onclick="selectCurrency('PKR')">PKR</button>
+    </div>
+    <h4>WOOD PLAN :</h4>
+    <p>1v Cores Ryzen 9 Processor</p>
+    <p>4 GB RAM</p>
+    <p>30 GB SSD</p>
+    <p>Indian / Mumbai Location</p>
+    <p id="price">Price: <span style="color: red;">Select the currency first</span></p>
+
+    <h2>REDEEM CODE :</h2>
+    <input type="text" id="redeemCode" placeholder="Enter code here">
+    <button onclick="applyDiscount()">Apply Code</button>
+
+    <div class="checkout-button-container">
+      <button class="checkout-button" onclick="handleCheckout()">Checkout</button>
+    </div>
+  </div>
+
+  <div class="popup" id="discountPopup">
+    <button class="close" onclick="closePopup()">×</button>
+    <h2>Congratulations!</h2>
+    <p>20% discount applied!</p>
+    <p>Your new prices are:</p>
+    <p id="discountedPrice"></p>
+    <button onclick="closePopup()">OK</button>
+  </div>
+
+  <div class="popup" id="errorPopup">
+    <button class="close" onclick="closeErrorPopup()">×</button>
+    <h2>Oops!</h2>
+    <p id="errorMessage">The code is invalid or you haven't selected a currency.</p>
+    <button onclick="closeErrorPopup()">OK</button>
+  </div>
+
+  <div class="party-popper" id="partyPopper">
+    <!-- Confetti or party effect elements will be added here dynamically -->
+  </div>
+
+  <script>
+    let selectedCurrency = null;
+    let discountApplied = false;
+
+    function selectCurrency(currency) {
+      selectedCurrency = currency;
+      const priceElement = document.getElementById('price');
+      if (currency === 'INR') {
+        priceElement.innerHTML = 'Price: <span style="color: white;">₹200.00</span>';
+      } else if (currency === 'PKR') {
+        priceElement.innerHTML = 'Price: <span style="color: white;">₨670.00</span>';
+      }
+      discountApplied = false; // Reset discount if currency is changed
+    }
+
+    function applyDiscount() {
+      const redeemCode = document.getElementById('redeemCode').value;
+      const discountPopup = document.getElementById('discountPopup');
+      const errorPopup = document.getElementById('errorPopup');
+      const discountedPriceElement = document.getElementById('discountedPrice');
+
+      if (!selectedCurrency) {
+        document.getElementById('errorMessage').textContent = 'Please select a currency first.';
+        errorPopup.style.display = 'block';
+        return;
+      }
+
+      if (redeemCode === 'DISCOUNT20' && !discountApplied) {
+        let discountedPrice;
+        if (selectedCurrency === 'INR') {
+          discountedPrice = '₹160.00';
+        } else if (selectedCurrency === 'PKR') {
+          discountedPrice = '₨536.00';
+        }
+        discountedPriceElement.innerHTML = `<strong>${discountedPrice}</strong>`;
+        discountPopup.style.display = 'block';
+        discountApplied = true; // Set discount as applied
+      } else {
+        document.getElementById('errorMessage').textContent = 'Invalid code or code already used.';
+        errorPopup.style.display = 'block';
+      }
+    }
+
+    function closePopup() {
+      document.getElementById('discountPopup').style.display = 'none';
+    }
+
+    function closeErrorPopup() {
+      document.getElementById('errorPopup').style.display = 'none';
+    }
+
+    function handleCheckout() {
+      if (!selectedCurrency) {
+        document.getElementById('errorMessage').textContent = 'Please select a currency first.';
+        document.getElementById('errorPopup').style.display = 'block';
+      } else {
+        // Get the price to pass in the URL
+        const price = discountApplied ? document.getElementById('discountedPrice').innerText : (selectedCurrency === 'INR' ? '₹200.00' : '₨670.00');
+        
+        // Construct the URL with parameters
+        const url = `invoice1.html?currency=${encodeURIComponent(selectedCurrency)}&price=${encodeURIComponent(price)}`;
+        
+        // Redirect to the invoice page with the parameters
+        window.location.href = url;
+      }
+    }
+  </script>
+</body>
+</html>

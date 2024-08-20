@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <!-- Favicon -->
+<link rel="icon" href="https://i.ibb.co/HDC6xy3/New-Project-3.png" type="image/png" sizes="48x48">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>INVOICE</title>
+<style>
+  body {
+    font-family: 'Arial', sans-serif;
+    margin: 0;
+    padding: 0;
+    background: linear-gradient(135deg, #000000, #003366); /* Black and blue gradient background */
+    color: #f0f0f0;
+  }
+
+  .container {
+    max-width: 900px;
+    margin: 50px auto;
+    padding: 20px;
+    text-align: center;
+    background-color: rgba(0, 0, 0, 0.8);
+    border-radius: 10px;
+    box-shadow: 0 0 15px rgba(0, 204, 255, 0.5); /* Blue shadow for container */
+  }
+
+  h1, h2, h4, p {
+    margin-bottom: 20px;
+  }
+
+  button {
+    background: linear-gradient(45deg, #003366, #00d4ff); /* Blue gradient for buttons */
+    border: none;
+    border-radius: 5px;
+    color: white;
+    padding: 12px 20px;
+    cursor: pointer;
+    transition: background 0.3s ease;
+    font-size: 16px;
+  }
+
+  button:hover {
+    background: linear-gradient(45deg, #00d4ff, #003366); /* Inverted gradient on hover */
+  }
+</style>
+</head>
+<body>
+  <div class="container">
+    <h1>INVOICE #03</h1>
+    <h4>DAIMOND PLAN :</h4>
+    <p>3v Cores Ryzen 9 Processor</p>
+    <p>8 GB RAM</p>
+    <p>100 GB SSD</p>
+    <p>Indian / Mumbai Location</p>
+    <h2>TOTAL PRICE :</h2>
+    <p id="invoicePrice">Price: Loading...</p>
+    
+    <h2>INFORMATION :</h2>
+    <p>Take a screenshot of this page and create a ticket on Discord. Send the screenshot there and you will get the payment methods on the ticket. When you are done with the payment, you will receive your Minecraft server.</p>
+    
+    <a href="https://discord.gg/6mvBDfNZ5f" target="_blank">
+      <button>Create Ticket on Discord</button>
+    </a>
+  </div>
+
+  <script>
+    // Function to get the URL parameters
+    function getQueryParam(param) {
+      const urlParams = new URLSearchParams(window.location.search);
+      return urlParams.get(param);
+    }
+
+    // Set the price based on URL parameters
+    function setPrice() {
+      const currency = getQueryParam('currency');
+      const discounted = getQueryParam('discounted') === 'true';
+      const priceElement = document.getElementById('invoicePrice');
+
+      const priceList = {
+        INR: discounted ? 480 : 600,
+        PKR: discounted ? 1592 : 1990
+      };
+
+      if (currency && priceList[currency]) {
+        priceElement.textContent = `Price: ${priceList[currency]} ${currency}` + (discounted ? ' (Discounted)' : '');
+      } else {
+        priceElement.textContent = 'Price: Invalid currency or price not available';
+      }
+    }
+
+    setPrice();
+  </script>
+</body>
+</html>

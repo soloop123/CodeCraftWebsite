@@ -418,32 +418,35 @@
     }
 
     function applyDiscount() {
-      const redeemCode = document.getElementById('redeemCode').value;
-      const discountPopup = document.getElementById('discountPopup');
-      const errorPopup = document.getElementById('errorPopup');
-      const discountedPriceElement = document.getElementById('discountedPrice');
+  const redeemCode = document.getElementById('redeemCode').value;
+  const discountPopup = document.getElementById('discountPopup');
+  const errorPopup = document.getElementById('errorPopup');
+  const discountedPriceElement = document.getElementById('discountedPrice');
+  const priceElement = document.getElementById('price');
 
-      if (!selectedCurrency) {
-        document.getElementById('errorMessage').textContent = 'Please select a currency first.';
-        errorPopup.style.display = 'block';
-        return;
-      }
+  if (!selectedCurrency) {
+    document.getElementById('errorMessage').textContent = 'Please select a currency first.';
+    errorPopup.style.display = 'block';
+    return;
+  }
 
-      if (redeemCode === 'DISCOUNT20' && !discountApplied) {
-        let discountedPrice;
-        if (selectedCurrency === 'INR') {
-          discountedPrice = '₹160.00';
-        } else if (selectedCurrency === 'PKR') {
-          discountedPrice = '₨536.00';
-        }
-        discountedPriceElement.innerHTML = `<strong>${discountedPrice}</strong>`;
-        discountPopup.style.display = 'block';
-        discountApplied = true; // Set discount as applied
-      } else {
-        document.getElementById('errorMessage').textContent = 'Invalid code or code already used.';
-        errorPopup.style.display = 'block';
-      }
+  if (redeemCode === 'DISCOUNT20' && !discountApplied) {
+    let discountedPrice;
+    if (selectedCurrency === 'INR') {
+      discountedPrice = '₹160.00';
+    } else if (selectedCurrency === 'PKR') {
+      discountedPrice = '₨536.00';
     }
+    discountedPriceElement.innerHTML = `<strong>${discountedPrice}</strong>`;
+    priceElement.innerHTML = `Price: <span style="color: white;">${discountedPrice}</span>`;
+    discountPopup.style.display = 'block';
+    discountApplied = true; // Set discount as applied
+  } else {
+    document.getElementById('errorMessage').textContent = 'Invalid code or code already used.';
+    errorPopup.style.display = 'block';
+  }
+}
+
 
     function closePopup() {
       document.getElementById('discountPopup').style.display = 'none';

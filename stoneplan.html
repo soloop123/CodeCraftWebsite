@@ -247,13 +247,13 @@
     }
 
     function handleCheckout() {
-      if (!selectedCurrency) {
-        alert('Please select a currency first.');
-        return;
-      }
-      alert('Proceeding to checkout');
-      // Here you would add the actual checkout logic
-    }
+  if (!selectedCurrency) {
+    alert('Please select a currency first.');
+    return;
+  }
+  // Redirect to the invoice2.html page
+  window.location.href = 'invoice2.html';
+}
   </script>
 </body>
 </html>

@@ -290,22 +290,46 @@ h9::after {
 
   .home-content {
     display: flex;
-    align-items: center;
+    flex-direction: column; /* Stack content vertically */
+    justify-content: center; /* Center the content vertically */
+    align-items: flex-start; /* Align content to the start (left) */
     gap: 20px; /* Space between text and GIF */
     flex: 1; /* Allow the text to take up available space */
+    color: #ffffff; /* Text color */
+    background: rgba(0, 0, 0, 0.6); /* Semi-transparent background for readability */
+    padding: 20px;
+    border-radius: 10px; /* Rounded corners for a modern look */
+  }
+
+  .home-content h2 {
+    font-family: 'Orbitron', sans-serif; /* Tech-inspired font */
+    font-weight: 700; /* Bold weight for prominence */
+    color: #00d4ff; /* Neon blue color for a futuristic look */
+    font-size: 48px; /* Larger font size for impact */
+    margin: 0 0 15px; /* Margin below for spacing */
+    padding: 10px;
+    text-align: left; /* Align text to the left */
+    text-shadow: 0 0 10px rgba(0, 212, 255, 0.7), /* Subtle glowing effect */
+                 0 0 20px rgba(0, 212, 255, 0.5),
+                 0 0 30px rgba(0, 212, 255, 0.3); /* Further glow */
   }
 
   .home-content p {
+    font-family: 'Kanit', sans-serif; /* Clean and modern font */
+    color: #eeeeee; /* Slightly off-white for contrast */
+    font-size: 20px; /* Readable font size */
+    line-height: 1.6; /* Better readability */
+    text-align: left; /* Align text to the left */
     margin: 0;
-    flex: 1; /* Allow the text to take up available space */
   }
 
   .home-gif {
-  width: 500px; /* Increase size as needed */
-  height: auto; /* Maintain aspect ratio */
-  margin-left: 100px; /* Increase margin to move GIF further to the right */
-  border-radius: 15px; /* Adjust the value for the desired roundness */
-}
+    width: 500px; /* Adjust size as needed */
+    height: auto; /* Maintain aspect ratio */
+    margin-left: 30px; /* Space between text and GIF */
+    border-radius: 15px; /* Rounded corners */
+  }
+
   
   /* Features Section Styling */
   ul {

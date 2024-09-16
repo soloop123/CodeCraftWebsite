@@ -417,7 +417,7 @@
       discountApplied = false; // Reset discount if currency is changed
     }
 
-    function applyDiscount() {
+function applyDiscount() {
   const redeemCode = document.getElementById('redeemCode').value;
   const discountPopup = document.getElementById('discountPopup');
   const errorPopup = document.getElementById('errorPopup');
@@ -430,7 +430,7 @@
     return;
   }
 
-  if (redeemCode === 'DISCOUNT20' && !discountApplied) {
+  if ((redeemCode === 'DISCOUNT20' || redeemCode === 'ZALIM20') && !discountApplied) {
     let discountedPrice;
     if (selectedCurrency === 'INR') {
       discountedPrice = '₹160.00';
@@ -446,6 +446,7 @@
     errorPopup.style.display = 'block';
   }
 }
+
 
 
     function closePopup() {

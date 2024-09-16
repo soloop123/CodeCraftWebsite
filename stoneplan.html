@@ -418,45 +418,47 @@
   }
 
   function applyDiscount() {
-    const redeemCode = document.getElementById('redeemCode').value;
-    const discountPopup = document.getElementById('discountPopup');
-    const errorPopup = document.getElementById('errorPopup');
-    const discountedPriceElement = document.getElementById('discountedPrice');
-    const priceElement = document.getElementById('price');
+  const redeemCode = document.getElementById('redeemCode').value;
+  const discountPopup = document.getElementById('discountPopup');
+  const errorPopup = document.getElementById('errorPopup');
+  const discountedPriceElement = document.getElementById('discountedPrice');
+  const priceElement = document.getElementById('price');
 
-    if (!selectedCurrency) {
-      document.getElementById('errorMessage').textContent = 'Please select a currency first.';
-      errorPopup.style.display = 'block';
-      return;
-    }
-
-    if (redeemCode === 'DISCOUNT20' && !discountApplied) {
-      let discountedPrice;
-      if (selectedCurrency === 'INR') {
-        discountedPrice = '₹320.00';
-      } else if (selectedCurrency === 'PKR') {
-        discountedPrice = '₨1080.00';
-      }
-      discountedPriceElement.innerHTML = `<strong>${discountedPrice}</strong>`;
-      priceElement.innerHTML = `Price: <span style="color: white;">${discountedPrice}</span>`;
-      discountPopup.style.display = 'block';
-      discountApplied = true; // Set discount as applied
-    } else if (redeemCode === 'ZALIM20' && !discountApplied) {
-      let discountedPrice;
-      if (selectedCurrency === 'INR') {
-        discountedPrice = '₹350.00'; // Change this value to the desired discount amount
-      } else if (selectedCurrency === 'PKR') {
-        discountedPrice = '₨1200.00'; // Change this value to the desired discount amount
-      }
-      discountedPriceElement.innerHTML = `<strong>${discountedPrice}</strong>`;
-      priceElement.innerHTML = `Price: <span style="color: white;">${discountedPrice}</span>`;
-      discountPopup.style.display = 'block';
-      discountApplied = true; // Set discount as applied
-    } else {
-      document.getElementById('errorMessage').textContent = 'Invalid code or code already used.';
-      errorPopup.style.display = 'block';
-    }
+  if (!selectedCurrency) {
+    document.getElementById('errorMessage').textContent = 'Please select a currency first.';
+    errorPopup.style.display = 'block';
+    return;
   }
+
+  if ((redeemCode === 'DISCOUNT20' || redeemCode === 'ZALIM20') && !discountApplied) {
+    let originalPrice;
+    let discountedPrice;
+    
+    // Determine the original price based on selected currency
+    if (selectedCurrency === 'INR') {
+      originalPrice = 400.00;
+      discountedPrice = originalPrice * 0.80; // 20% discount
+    } else if (selectedCurrency === 'PKR') {
+      originalPrice = 1350.00;
+      discountedPrice = originalPrice * 0.80; // 20% discount
+    }
+
+    // Format the discounted price based on the selected currency
+    if (selectedCurrency === 'INR') {
+      discountedPriceElement.innerHTML = `<strong>₹${discountedPrice.toFixed(2)}</strong>`;
+      priceElement.innerHTML = `Price: <span style="color: white;">₹${discountedPrice.toFixed(2)}</span>`;
+    } else if (selectedCurrency === 'PKR') {
+      discountedPriceElement.innerHTML = `<strong>₨${discountedPrice.toFixed(2)}</strong>`;
+      priceElement.innerHTML = `Price: <span style="color: white;">₨${discountedPrice.toFixed(2)}</span>`;
+    }
+
+    discountPopup.style.display = 'block';
+    discountApplied = true; // Set discount as applied
+  } else {
+    document.getElementById('errorMessage').textContent = 'Invalid code or code already used.';
+    errorPopup.style.display = 'block';
+  }
+}
 
   function closePopup() {
     document.getElementById('discountPopup').style.display = 'none';

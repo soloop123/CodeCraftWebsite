@@ -402,75 +402,85 @@
     <!-- Confetti or party effect elements will be added here dynamically -->
   </div>
 
-  <script>
-    let selectedCurrency = null;
-    let discountApplied = false;
+<script>
+  let selectedCurrency = null;
+  let discountApplied = false;
 
-    function selectCurrency(currency) {
-      selectedCurrency = currency;
-      const priceElement = document.getElementById('price');
-      if (currency === 'INR') {
-        priceElement.innerHTML = 'Price: <span style="color: white;">₹400.00</span>';
-      } else if (currency === 'PKR') {
-        priceElement.innerHTML = 'Price: <span style="color: white;">₨1350.00</span>';
-      }
-      discountApplied = false; // Reset discount if currency is changed
+  function selectCurrency(currency) {
+    selectedCurrency = currency;
+    const priceElement = document.getElementById('price');
+    if (currency === 'INR') {
+      priceElement.innerHTML = 'Price: <span style="color: white;">₹400.00</span>';
+    } else if (currency === 'PKR') {
+      priceElement.innerHTML = 'Price: <span style="color: white;">₨1350.00</span>';
     }
-
-    function applyDiscount() {
-  const redeemCode = document.getElementById('redeemCode').value;
-  const discountPopup = document.getElementById('discountPopup');
-  const errorPopup = document.getElementById('errorPopup');
-  const discountedPriceElement = document.getElementById('discountedPrice');
-  const priceElement = document.getElementById('price');
-
-  if (!selectedCurrency) {
-    document.getElementById('errorMessage').textContent = 'Please select a currency first.';
-    errorPopup.style.display = 'block';
-    return;
+    discountApplied = false; // Reset discount if currency is changed
   }
 
-  if (redeemCode === 'DISCOUNT20' && !discountApplied) {
-    let discountedPrice;
-    if (selectedCurrency === 'INR') {
-      discountedPrice = '₹320.00';
-    } else if (selectedCurrency === 'PKR') {
-      discountedPrice = '₨1080.00';
-    }
-    discountedPriceElement.innerHTML = `<strong>${discountedPrice}</strong>`;
-    priceElement.innerHTML = `Price: <span style="color: white;">${discountedPrice}</span>`;
-    discountPopup.style.display = 'block';
-    discountApplied = true; // Set discount as applied
-  } else {
-    document.getElementById('errorMessage').textContent = 'Invalid code or code already used.';
-    errorPopup.style.display = 'block';
-  }
-}
+  function applyDiscount() {
+    const redeemCode = document.getElementById('redeemCode').value;
+    const discountPopup = document.getElementById('discountPopup');
+    const errorPopup = document.getElementById('errorPopup');
+    const discountedPriceElement = document.getElementById('discountedPrice');
+    const priceElement = document.getElementById('price');
 
-
-    function closePopup() {
-      document.getElementById('discountPopup').style.display = 'none';
+    if (!selectedCurrency) {
+      document.getElementById('errorMessage').textContent = 'Please select a currency first.';
+      errorPopup.style.display = 'block';
+      return;
     }
 
-    function closeErrorPopup() {
-      document.getElementById('errorPopup').style.display = 'none';
-    }
-
-    function handleCheckout() {
-      if (!selectedCurrency) {
-        document.getElementById('errorMessage').textContent = 'Please select a currency first.';
-        document.getElementById('errorPopup').style.display = 'block';
-      } else {
-        // Get the price to pass in the URL
-        const price = discountApplied ? document.getElementById('discountedPrice').innerText : (selectedCurrency === 'INR' ? '₹400.00' : '₨1350.00');
-        
-        // Construct the URL with parameters
-        const url = `invoice2.html?currency=${encodeURIComponent(selectedCurrency)}&price=${encodeURIComponent(price)}`;
-        
-        // Redirect to the invoice page with the parameters
-        window.location.href = url;
+    if (redeemCode === 'DISCOUNT20' && !discountApplied) {
+      let discountedPrice;
+      if (selectedCurrency === 'INR') {
+        discountedPrice = '₹320.00';
+      } else if (selectedCurrency === 'PKR') {
+        discountedPrice = '₨1080.00';
       }
+      discountedPriceElement.innerHTML = `<strong>${discountedPrice}</strong>`;
+      priceElement.innerHTML = `Price: <span style="color: white;">${discountedPrice}</span>`;
+      discountPopup.style.display = 'block';
+      discountApplied = true; // Set discount as applied
+    } else if (redeemCode === 'ZALIM20' && !discountApplied) {
+      let discountedPrice;
+      if (selectedCurrency === 'INR') {
+        discountedPrice = '₹350.00'; // Change this value to the desired discount amount
+      } else if (selectedCurrency === 'PKR') {
+        discountedPrice = '₨1200.00'; // Change this value to the desired discount amount
+      }
+      discountedPriceElement.innerHTML = `<strong>${discountedPrice}</strong>`;
+      priceElement.innerHTML = `Price: <span style="color: white;">${discountedPrice}</span>`;
+      discountPopup.style.display = 'block';
+      discountApplied = true; // Set discount as applied
+    } else {
+      document.getElementById('errorMessage').textContent = 'Invalid code or code already used.';
+      errorPopup.style.display = 'block';
     }
-  </script>
+  }
+
+  function closePopup() {
+    document.getElementById('discountPopup').style.display = 'none';
+  }
+
+  function closeErrorPopup() {
+    document.getElementById('errorPopup').style.display = 'none';
+  }
+
+  function handleCheckout() {
+    if (!selectedCurrency) {
+      document.getElementById('errorMessage').textContent = 'Please select a currency first.';
+      document.getElementById('errorPopup').style.display = 'block';
+    } else {
+      // Get the price to pass in the URL
+      const price = discountApplied ? document.getElementById('discountedPrice').innerText : (selectedCurrency === 'INR' ? '₹400.00' : '₨1350.00');
+      
+      // Construct the URL with parameters
+      const url = `invoice2.html?currency=${encodeURIComponent(selectedCurrency)}&price=${encodeURIComponent(price)}`;
+      
+      // Redirect to the invoice page with the parameters
+      window.location.href = url;
+    }
+  }
+</script>
 </body>
 </html>

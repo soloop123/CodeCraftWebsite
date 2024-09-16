@@ -489,6 +489,12 @@ h9::after {
       document.getElementById('loader').style.display = 'none';
     });
 
+ window.addEventListener('load', function() {
+    setTimeout(function() {
+      window.scrollTo(0, 0);
+    }, 100); // Adjust the delay as needed
+  });
+  
 </script>
 
 

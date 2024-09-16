@@ -327,8 +327,68 @@ h9::after {
     font-size: 18px; /* Adjust size as needed */
     font-family: 'Montserrat', sans-serif; /* Apply Montserrat font */
   }
+
+   /* Skeleton Screen Styles */
+    .skeleton-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(255, 255, 255, 0.8);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      z-index: 9999; /* Ensure it's on top of all content */
+    }
+
+    .skeleton-content {
+      width: 80%;
+      max-width: 1200px;
+    }
+
+    .skeleton {
+      background: #ccc;
+      border-radius: 4px;
+      animation: pulse 1.5s infinite ease-in-out;
+    }
+
+    .skeleton-header {
+      height: 50px;
+      margin-bottom: 20px;
+    }
+
+    .skeleton-main {
+      height: 200px;
+      margin-bottom: 20px;
+    }
+
+    .skeleton-footer {
+      height: 30px;
+    }
+
+    @keyframes pulse {
+      0% {
+        background-color: #ccc;
+      }
+      50% {
+        background-color: #e0e0e0;
+      }
+      100% {
+        background-color: #ccc;
+      }
+    }
+  
 </style>
 </head>
+   <!-- Skeleton Screen Overlay -->
+  <div class="skeleton-overlay" id="skeleton-screen">
+    <div class="skeleton-content">
+      <div class="skeleton skeleton-header"></div>
+      <div class="skeleton skeleton-main"></div>
+      <div class="skeleton skeleton-footer"></div>
+    </div>
+
 <body>
 <header>
   <div class="logo" onclick="window.location.reload();">
@@ -451,13 +511,19 @@ h9::after {
     window.scrollTo(0, 0);
   });
 
+ window.addEventListener('load', function() {
+      const skeletonScreen = document.getElementById('skeleton-screen');
+      if (skeletonScreen) {
+        skeletonScreen.style.display = 'none'; // Hide the skeleton screen after content has loaded
+      }
+    });
+
+
+  
 </script>
 
 
-  window.addEventListener('load', function() {
-    window.scrollTo(0, 0);
-  });
-
+ 
 
 
   

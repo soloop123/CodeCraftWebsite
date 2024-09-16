@@ -30,7 +30,7 @@
 
     header {
       background-color: rgba(0, 0, 0, 0.8);
-      padding: 10px 20px; /* Reduced padding to bring items closer */
+      padding: 20px; /* Adjusted padding */
       display: flex;
       align-items: center;
       justify-content: space-between;
@@ -38,7 +38,7 @@
     }
 
     header h1 {
-      margin: 0; /* Removed margin to bring the title closer */
+      margin: 0; /* Removed margin */
       color: #ffffff;
       font-family: 'Kanit', sans-serif; /* Changed to Kanit */
       font-size: 30px;
@@ -142,55 +142,6 @@
     }
 
     .plan button:hover {
-      background: linear-gradient(45deg, #00d4ff, #003366); /* Inverted gradient on hover */
-    }
-
-    .signup-form {
-      background-color: rgba(0, 0, 0, 0.8);
-      border-radius: 10px;
-      padding: 30px;
-      margin-top: 30px;
-      width: 100%;
-      max-width: 600px;
-      margin: 30px auto;
-      box-shadow: 0 0 15px rgba(0, 204, 255, 0.5); /* Blue shadow for form */
-    }
-
-    .signup-form h3 {
-      margin-bottom: 20px;
-      color: #ffffff;
-      font-size: 24px;
-    }
-
-    .signup-form label {
-      display: block;
-      margin: 12px 0 6px;
-      color: #ffffff;
-    }
-
-    .signup-form input, .signup-form select {
-      width: 100%;
-      padding: 12px;
-      margin-bottom: 12px;
-      border-radius: 5px;
-      border: 1px solid #cccccc;
-      background: rgba(255, 255, 255, 0.1);
-      color: #ffffff;
-    }
-
-    .signup-form button {
-      background: linear-gradient(45deg, #003366, #00d4ff); /* Blue gradient for form button */
-      border: none;
-      border-radius: 5px;
-      color: white;
-      padding: 12px;
-      width: 100%;
-      cursor: pointer;
-      transition: background 0.3s ease;
-      font-size: 16px;
-    }
-
-    .signup-form button:hover {
       background: linear-gradient(45deg, #00d4ff, #003366); /* Inverted gradient on hover */
     }
 
@@ -317,23 +268,6 @@
         <p>80 GB Storage</p>
         <button>Sign Up</button>
       </div>
-    </section>
-
-    <section class="signup-form">
-      <h3>Sign Up Now</h3>
-      <form action="#">
-        <label for="name">Name:</label>
-        <input type="text" id="name" name="name" required>
-        <label for="email">Email:</label>
-        <input type="email" id="email" name="email" required>
-        <label for="plan">Select Plan:</label>
-        <select id="plan" name="plan">
-          <option value="basic">Basic Plan</option>
-          <option value="standard">Standard Plan</option>
-          <option value="premium">Premium Plan</option>
-        </select>
-        <button type="submit">Sign Up</button>
-      </form>
     </section>
   </main>
 

@@ -363,6 +363,69 @@ h9::after {
   }
 }
 
+  /* Mobile Styles */
+@media (max-width: 768px) {
+  header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .logo img {
+    width: 100px; /* Adjust logo size for smaller screens */
+  }
+
+  header h1 {
+    font-size: 24px; /* Adjust font size for smaller screens */
+  }
+
+  nav {
+    margin-top: 10px;
+  }
+
+  nav a {
+    margin: 5px 0; /* Stack navigation links vertically */
+    font-size: 16px; /* Adjust font size for smaller screens */
+  }
+
+  .home-content {
+    flex-direction: column; /* Stack text and GIF vertically */
+    text-align: center; /* Center-align text */
+  }
+
+  .home-gif {
+    width: 100%; /* Make GIF responsive */
+    margin-left: 0; /* Remove left margin */
+  }
+
+  .pricing-table {
+    flex-direction: column; /* Stack pricing plans vertically */
+    align-items: center; /* Center-align plans */
+  }
+
+  .plan {
+    width: 100%; /* Make plans full width */
+    max-width: 300px; /* Limit the width for better readability */
+  }
+
+  .signup-form {
+    width: 100%;
+    padding: 20px;
+    margin: 20px auto;
+  }
+
+  .home-content h2 {
+    font-size: 36px; /* Adjust font size for smaller screens */
+  }
+
+  .home-content p {
+    font-size: 18px; /* Adjust font size for smaller screens */
+  }
+
+  h9 {
+    font-size: 30px; /* Adjust font size for smaller screens */
+  }
+}
+
 
 </style>
 </head>

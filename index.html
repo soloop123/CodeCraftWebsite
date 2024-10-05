@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Flayer MC - Minecraft Server Store">
+  <title>Flayer MC Store</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+
+    body {
+      background-image: url('https://i.pinimg.com/originals/7e/d8/04/7ed804c56990c4286568e14cb25c6854.jpg');
+      background-size: cover;
+      background-position: center;
+      background-attachment: fixed;
+      color: #f5f5f5;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      line-height: 1.6;
+    }
+
+    header {
+      background-color: rgba(65, 0, 120, 0.9); /* Dark purple */
+      width: 100%;
+      padding: 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.5);
+    }
+
+    .logo h1 {
+      color: #DDA0DD; /* Lighter purple for the logo */
+      font-size: 2.8rem; /* Increased size */
+      letter-spacing: 2px;
+    }
+
+    nav ul {
+      list-style-type: none;
+      display: flex;
+      gap: 20px;
+    }
+
+    nav ul li a {
+      text-decoration: none;
+      color: #ffffff;
+      font-size: 1.2rem;
+      transition: color 0.3s;
+    }
+
+    nav ul li a:hover {
+      color: #DDA0DD; /* Accent light purple */
+    }
+
+    .section {
+      margin: 80px 0;
+      text-align: center;
+      width: 100%;
+    }
+
+    .section h2 {
+      font-size: 2.2rem;
+      margin-bottom: 40px;
+      text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+    }
+
+    .rank-cards {
+      display: flex;
+      justify-content: space-around;
+      gap: 30px;
+      padding: 0 20px;
+    }
+
+    .rank-card {
+      background-color: rgba(72, 61, 139, 0.9); /* Medium purple */
+      padding: 20px;
+      border-radius: 15px;
+      width: 250px;
+      text-align: center;
+      transition: transform 0.3s, box-shadow 0.3s;
+      box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+    }
+
+    .rank-card:hover {
+      transform: scale(1.05);
+      box-shadow: 0 12px 24px rgba(0, 0, 0, 0.4);
+    }
+
+    .rank-card h3 {
+      font-size: 1.8rem;
+      margin-bottom: 15px;
+      color: #DDA0DD;
+    }
+
+    .rank-card p {
+      font-size: 1.1rem;
+      margin-bottom: 20px;
+    }
+
+    .buy-btn {
+      background-color: #DDA0DD;
+      color: white;
+      padding: 12px 20px;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      font-size: 16px;
+      transition: background-color 0.3s;
+    }
+
+    .buy-btn:hover {
+      background-color: #9932CC;
+    }
+
+    .discord-btn {
+      background-color: #7289DA;
+      color: white;
+      padding: 12px 24px;
+      text-decoration: none;
+      border-radius: 8px;
+      font-size: 18px;
+      transition: background-color 0.3s;
+    }
+
+    .discord-btn:hover {
+      background-color: #5a6bbf;
+    }
+
+    /* IP Section */
+    #ip-section {
+      padding: 20px 0;
+      text-align: center;
+      width: 100%;
+    }
+
+    #ip-section h2 {
+      font-size: 2.5rem;
+      margin-bottom: 10px;
+      color: #DDA0DD; /* Light purple text */
+    }
+
+    #ip-section p {
+      font-size: 1.5rem;
+      margin-bottom: 20px;
+      display: inline-block;
+      background-color: rgba(0, 0, 0, 0.7); /* Dark transparent background */
+      padding: 10px 20px;
+      border-radius: 8px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4);
+      color: #f5f5f5; /* Text color */
+    }
+
+    /* Copy button */
+    .copy-btn {
+      background-color: #9932CC; /* Purple button */
+      color: white;
+      padding: 8px 15px;
+      margin-left: 10px;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      font-size: 1rem;
+      transition: background-color 0.3s;
+    }
+
+    .copy-btn:hover {
+      background-color: #DDA0DD;
+    }
+
+    footer {
+      margin-top: 50px;
+      background-color: rgba(65, 0, 120, 0.9);
+      width: 100%;
+      padding: 20px;
+      text-align: center;
+      box-shadow: 0px -4px 8px rgba(0, 0, 0, 0.5);
+    }
+
+    footer p {
+      font-size: 1rem;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="logo">
+      <h1>Flayer Mc</h1>
+    </div>
+    <nav>
+      <ul>
+        <li><a href="#ranks">Ranks</a></li>
+        <li><a href="#discord">Discord</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <!-- Updated IP Section with Copy button -->
+  <section id="ip-section">
+    <h2>Server IP</h2>
+    <p id="server-ip">play.flayerhosting.online</p>
+    <button class="copy-btn" onclick="copyIP()">Copy IP</button>
+  </section>
+
+  <section id="ranks" class="section">
+    <h2>Ranks for Sale</h2>
+    <div class="rank-cards">
+      <div class="rank-card">
+        <h3>VIP Rank</h3>
+        <p>Price: $5</p>
+        <button class="buy-btn">Buy Now</button>
+      </div>
+      <div class="rank-card">
+        <h3>MVP Rank</h3>
+        <p>Price: $15</p>
+        <button class="buy-btn">Buy Now</button>
+      </div>
+      <div class="rank-card">
+        <h3>Legend Rank</h3>
+        <p>Price: $25</p>
+        <button class="buy-btn">Buy Now</button>
+      </div>
+    </div>
+  </section>
+
+  <section id="discord" class="section">
+    <h2>Join Our Discord</h2>
+    <a href="https://discord.gg/b8RzEhcQph" class="discord-btn">Join Discord</a>
+  </section>
+
+  <footer>
+    <p>&copy; 2024 Flayer MC. All rights reserved.</p>
+  </footer>
+
+  <script>
+    function copyIP() {
+      const ip = document.getElementById('server-ip').textContent;
+      navigator.clipboard.writeText(ip).then(() => {
+        alert('Server IP copied to clipboard!');
+      }).catch(err => {
+        console.error('Could not copy IP: ', err);
+      });
+    }
+  </script>
+</body>
+</html>

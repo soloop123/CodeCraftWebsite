@@ -6,6 +6,7 @@
   <meta name="description" content="Flayer MC - Minecraft Server Store">
   <title>Flayer MC Store</title>
   <style>
+    /* CSS styles */
     * {
       margin: 0;
       padding: 0;
@@ -26,7 +27,7 @@
     }
 
     header {
-      background-color: rgba(65, 0, 120, 0.9); /* Dark purple */
+      background-color: rgba(65, 0, 120, 0.9);
       width: 100%;
       padding: 20px;
       display: flex;
@@ -36,8 +37,8 @@
     }
 
     .logo h1 {
-      color: #DDA0DD; /* Lighter purple for the logo */
-      font-size: 2.8rem; /* Increased size */
+      color: #DDA0DD;
+      font-size: 2.8rem;
       letter-spacing: 2px;
     }
 
@@ -55,7 +56,7 @@
     }
 
     nav ul li a:hover {
-      color: #DDA0DD; /* Accent light purple */
+      color: #DDA0DD;
     }
 
     .section {
@@ -78,7 +79,7 @@
     }
 
     .rank-card {
-      background-color: rgba(72, 61, 139, 0.9); /* Medium purple */
+      background-color: rgba(72, 61, 139, 0.9);
       padding: 20px;
       border-radius: 15px;
       width: 250px;
@@ -132,7 +133,6 @@
       background-color: #5a6bbf;
     }
 
-    /* IP Section */
     #ip-section {
       padding: 20px 0;
       text-align: center;
@@ -142,23 +142,22 @@
     #ip-section h2 {
       font-size: 2.5rem;
       margin-bottom: 10px;
-      color: #DDA0DD; /* Light purple text */
+      color: #DDA0DD;
     }
 
     #ip-section p {
       font-size: 1.5rem;
       margin-bottom: 20px;
       display: inline-block;
-      background-color: rgba(0, 0, 0, 0.7); /* Dark transparent background */
+      background-color: rgba(0, 0, 0, 0.7);
       padding: 10px 20px;
       border-radius: 8px;
       box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4);
-      color: #f5f5f5; /* Text color */
+      color: #f5f5f5;
     }
 
-    /* Copy button */
     .copy-btn {
-      background-color: #9932CC; /* Purple button */
+      background-color: #9932CC;
       color: white;
       padding: 8px 15px;
       margin-left: 10px;
@@ -166,7 +165,7 @@
       border-radius: 6px;
       cursor: pointer;
       font-size: 1rem;
-      transition: background-color 0.3s, padding-right 0.3s; /* Add transition for padding */
+      transition: background-color 0.3s, padding-right 0.3s;
       position: relative;
     }
 
@@ -175,23 +174,23 @@
     }
 
     .copy-btn.copied {
-      background-color: #28a745; /* Green background for the copied state */
-      padding-right: 35px; /* Add space for the checkmark */
+      background-color: #28a745;
+      padding-right: 35px;
     }
 
     .copy-btn::after {
-      content: '✔'; /* Checkmark symbol */
+      content: '✔';
       color: white;
       position: absolute;
       right: 10px;
       top: 50%;
       transform: translateY(-50%);
-      opacity: 0; /* Hidden by default */
+      opacity: 0;
       transition: opacity 0.3s;
     }
 
     .copy-btn.copied::after {
-      opacity: 1; /* Show checkmark when button is in the copied state */
+      opacity: 1;
     }
 
     footer {
@@ -263,17 +262,30 @@
       const ip = document.getElementById('server-ip').textContent;
       navigator.clipboard.writeText(ip).then(() => {
         const copyButton = document.querySelector('.copy-btn');
-        copyButton.classList.add('copied'); // Add the 'copied' class to the button
-
+        copyButton.classList.add('copied');
         setTimeout(() => {
-          copyButton.classList.remove('copied'); // Remove the class after 2 seconds
+          copyButton.classList.remove('copied');
         }, 2000);
       });
     }
 
     function redirectToDiscord() {
-      window.location.href = "https://discord.gg/XhVr47xpNT"; // Redirect to the specified URL
+      window.location.href = "https://discord.gg/XhVr47xpNT";
     }
   </script>
+
+  <!--Start of Tawk.to Script-->
+  <script type="text/javascript">
+  var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
+  (function(){
+  var s1=document.createElement("script"),s0=document.getElementsByTagName("script")[0];
+  s1.async=true;
+  s1.src='https://embed.tawk.to/64fc85b9474251287912059d/1h9rgvagq';
+  s1.charset='UTF-8';
+  s1.setAttribute('crossorigin','*');
+  s0.parentNode.insertBefore(s1,s0);
+  })();
+  </script>
+  <!--End of Tawk.to Script-->
 </body>
 </html>

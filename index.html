@@ -166,11 +166,32 @@
       border-radius: 6px;
       cursor: pointer;
       font-size: 1rem;
-      transition: background-color 0.3s;
+      transition: background-color 0.3s, padding-right 0.3s; /* Add transition for padding */
+      position: relative;
     }
 
     .copy-btn:hover {
       background-color: #DDA0DD;
+    }
+
+    .copy-btn.copied {
+      background-color: #28a745; /* Green background for the copied state */
+      padding-right: 35px; /* Add space for the checkmark */
+    }
+
+    .copy-btn::after {
+      content: '✔'; /* Checkmark symbol */
+      color: white;
+      position: absolute;
+      right: 10px;
+      top: 50%;
+      transform: translateY(-50%);
+      opacity: 0; /* Hidden by default */
+      transition: opacity 0.3s;
+    }
+
+    .copy-btn.copied::after {
+      opacity: 1; /* Show checkmark when button is in the copied state */
     }
 
     footer {
@@ -213,17 +234,17 @@
       <div class="rank-card">
         <h3>VIP Rank</h3>
         <p>Price: $5</p>
-        <button class="buy-btn">Buy Now</button>
+        <button class="buy-btn" onclick="redirectToDiscord()">Order Now</button>
       </div>
       <div class="rank-card">
         <h3>MVP Rank</h3>
         <p>Price: $15</p>
-        <button class="buy-btn">Buy Now</button>
+        <button class="buy-btn" onclick="redirectToDiscord()">Order Now</button>
       </div>
       <div class="rank-card">
         <h3>Legend Rank</h3>
         <p>Price: $25</p>
-        <button class="buy-btn">Buy Now</button>
+        <button class="buy-btn" onclick="redirectToDiscord()">Order Now</button>
       </div>
     </div>
   </section>
@@ -241,10 +262,17 @@
     function copyIP() {
       const ip = document.getElementById('server-ip').textContent;
       navigator.clipboard.writeText(ip).then(() => {
-        alert('Server IP copied to clipboard!');
-      }).catch(err => {
-        console.error('Could not copy IP: ', err);
+        const copyButton = document.querySelector('.copy-btn');
+        copyButton.classList.add('copied'); // Add the 'copied' class to the button
+
+        setTimeout(() => {
+          copyButton.classList.remove('copied'); // Remove the class after 2 seconds
+        }, 2000);
       });
+    }
+
+    function redirectToDiscord() {
+      window.location.href = "https://discord.gg/XhVr47xpNT"; // Redirect to the specified URL
     }
   </script>
 </body>
